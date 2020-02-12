@@ -20,7 +20,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-import static com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity.BUNDLE_EXTRA_NEIGHBOUR;
+
 
 
 public class NeighbourFragment extends Fragment {
@@ -30,11 +30,12 @@ public class NeighbourFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private static final String IS_FAVORITE = "isFavorite";
 
-    // clé de BUNDLE
+    // Key BUNDLE
     private boolean isFavoritePage;
 
     /**
      * Create and return a new instance
+     * is created at each fragment change
      *
      * @return @{@link NeighbourFragment}
      */
@@ -42,6 +43,7 @@ public class NeighbourFragment extends Fragment {
         NeighbourFragment fragment = new NeighbourFragment();
         Bundle args = new Bundle();
         args.putBoolean(IS_FAVORITE, isFav);
+        // pass BUNDLE variable in Fragment
         fragment.setArguments(args);
         return fragment;
     }

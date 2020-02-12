@@ -1,9 +1,8 @@
 package com.openclassrooms.entrevoisins.model;
 
-import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -31,14 +30,6 @@ public class Neighbour implements Serializable {
      */
 
     private boolean favorite;
-
-
-    private NeighbourApiService apiService; // TODO: A utiliser
-    private Object Neighbour;
-
-    public Neighbour(NeighbourApiService apiService) {
-        this.apiService = apiService;
-    }
 
 
     /**

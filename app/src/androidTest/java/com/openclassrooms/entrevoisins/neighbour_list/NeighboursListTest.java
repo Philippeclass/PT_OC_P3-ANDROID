@@ -33,6 +33,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -49,8 +50,6 @@ public class NeighboursListTest {
     private NeighbourApiService service;
     private ListNeighbourActivity mActivity;
     private List<Neighbour> mList;
-    private String Name = "Caroline";
-
 
 
     @Rule
@@ -113,6 +112,9 @@ public class NeighboursListTest {
         onView(withId(R.id.toggle_fav_button)).perform(click());
         //check if floating button isEnabled
         onView(withId(R.id.toggle_fav_button)).check(matches(isEnabled()));
+        // get neighbour list then click the first neighbour
+        onView(withId(R.id.toggle_fav_button)).perform(click());
+        //check if floating button isEnabled
 
 
     }
@@ -130,12 +132,16 @@ public class NeighboursListTest {
                 .perform(click())
                 .check(matches(isEnabled()))
                 .perform(pressBack());
-        // swipeLeft main_content to Favorites
-        onView(withId(R.id.main_content))
-                .perform(swipeLeft());
+        // click to Favorites
+        onView(withContentDescription("Favorites"))
+                .perform(click());
         // perform click on Name = Caroline in Favorites
-        onView(allOf(withText(Name), isDisplayed()));
-
+        onView(allOf(withId(R.id.list_neighbours), isDisplayed()))
+                .check(withItemCount(1));
+        onView(allOf(withId(R.id.list_neighbours), isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.avatar_name))
+                .check(matches(withText(mList.get(0).getName())));
 
     }
 

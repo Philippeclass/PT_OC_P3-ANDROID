@@ -52,8 +52,11 @@ public class SecondActivity extends AppCompatActivity {
         mNeighbourApiService = DI.getNeighbourApiService();
         mNeighbour = (Neighbour) getIntent().getSerializableExtra(BUNDLE_EXTRA_NEIGHBOUR);
         Glide.with(this).load(mNeighbour.getAvatarUrl()).into(mAvatarImg);
+        // get chosen avatar name
         final TextView neighbourNameTextView = (TextView) findViewById(R.id.avatar_name);
         neighbourNameTextView.setText(mNeighbour.getName());
+        final TextView neighbourNameBarTextView = (TextView) findViewById(R.id.avatar_name_bar);
+        neighbourNameBarTextView.setText(mNeighbour.getName());
         setFavoriteButton();
 
 

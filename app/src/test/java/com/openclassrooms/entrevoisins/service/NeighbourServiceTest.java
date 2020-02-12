@@ -49,19 +49,19 @@ public class NeighbourServiceTest {
     @Test
     public void changeFavStatusWithSucess() {
         List<Neighbour> neighbours = service.getNeighbours();
-        Neighbour neighbour = neighbours.get(0);
+        Neighbour neighbour = neighbours.get(2);
         boolean status = neighbour.getFavorite();
         service.changeFavStatus(neighbour);
-        assertThat(status, is(not(service.getNeighbours().get(0).getFavorite())));
+        assertThat(status, is(not(service.getNeighbours().get(2).getFavorite())));
+        Neighbour neighbour0 = neighbours.get(2);
+        service.changeFavStatus(neighbour0);
     }
 
     @Test
     public void GetFavListWithSucess() {
         List<Neighbour> neighbours = service.getNeighbours();
-        Neighbour neighbour = neighbours.get(2);
+        Neighbour neighbour = neighbours.get(0);
         service.changeFavStatus(neighbour);
-        Neighbour neighbour0 = neighbours.get(0);
-        service.changeFavStatus(neighbour0);
         List<Neighbour> favNeighbours = service.getFav();
         assertThat(favNeighbours.size(), is(1) );
         assertTrue(favNeighbours.get(0).getFavorite());
